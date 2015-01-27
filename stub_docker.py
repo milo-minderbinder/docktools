@@ -3,7 +3,8 @@ import os.path
 import sys
 
 
-project_name = sys.argv[1]
+project_dir = os.path.realpath(sys.argv[1])
+project_name = os.path.basename(project_dir)
 dockerfile_text = '''FROM mminderbinder/baseimage:0.9.15
 MAINTAINER Milo Minderbinder <minderbinder.enterprises@gmail.com>
 
@@ -20,7 +21,6 @@ gitignore_text = '''
 *.log
 '''
 readme_text = '# %s' % project_name
-project_dir = os.path.join(os.path.dirname(__file__), project_name)
 if os.path.isdir(project_dir):
     print 'Project already exists!'
     sys.exit(1)
