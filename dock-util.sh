@@ -4,6 +4,7 @@
 usage() {
 	echo "Usage: $0 <COMMAND>" 1>&2
 	echo "	update-image - update docker images" 1>&2
+	echo "	clean-images - cleanup dangling (orphaned) docker images" 1>&2
 	echo "	test - test command" 1>&2
 	exit 1
 }
