@@ -8,12 +8,11 @@ project_name = os.path.basename(project_dir)
 dockerfile_text = '''FROM mminderbinder/baseimage
 MAINTAINER Milo Minderbinder <minderbinder.enterprises@gmail.com>
 
-CMD ["/sbin/my_init"]
-
 
 
 # Clean up APT when done
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+CMD ["/sbin/my_init"]
 '''
 gitignore_text = '''
 *.swp

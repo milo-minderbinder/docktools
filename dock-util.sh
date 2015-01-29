@@ -1,13 +1,14 @@
 #!/bin/bash
 
+image_dir=~/Docker-Projects
 images=(baseimage python java-jdk7 tomcat7 apache2 gradle2 openam)
 
 usage() {
 	echo "Usage: $0 <COMMAND>" 1>&2
 	echo "	update-image	- update docker images" 1>&2
 	echo "	clean-images	- cleanup dangling (orphaned) docker images" 1>&2
-	echo "	git-status		- fetch each image and print git status for each branch" 1>&2
-	echo "	test 			- test command" 1>&2
+	echo "	git-status	- fetch each image and print git status for each branch" 1>&2
+	echo "	test 		- test command" 1>&2
 	exit 1
 }
 
@@ -18,8 +19,8 @@ clean_dangling_images() {
 
 update_image() {
 	echo "-----------------------------------------------------------"
-	echo "Building ${1}..."
-	cd ../$1
+	echo "Building ${image_dir}/${1}..."
+	cd ${image_dir}/${1}
 	git checkout master
 	git status
 	docker build -t mminderbinder/$1 .
@@ -40,13 +41,13 @@ update_images() {
 check_git_status() {
 	for img in ${images[@]}; do
 		echo "-----------------------------------------------------------"
-		echo "checking git status for ${img}..."
-		if [[ -d "../${img}" ]]; then
-			cd ../${img}
+		echo "checking git status for ${image_dir}/${img}..."
+		if [[ -d "${image_dir}/${img}" ]]; then
+			cd ${image_dir}/${img}
 			git checkout master && git fetch && git status
 			git checkout 0.9.15 && git fetch && git status
 		else
-			echo "Directory does not exist: ../${img}"
+			echo "Directory does not exist: ${image_dir}/${img}"
 		fi
 	done
 }
