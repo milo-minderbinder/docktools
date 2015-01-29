@@ -5,7 +5,7 @@ images=(baseimage python java-jdk7 tomcat7 apache2 gradle2 openam)
 
 usage() {
 	echo "Usage: $0 <COMMAND>" 1>&2
-	echo "	update-image	- update docker images" 1>&2
+	echo "	update-images	- update docker images" 1>&2
 	echo "	clean-images	- cleanup dangling (orphaned) docker images" 1>&2
 	echo "	git-status	- fetch each image and print git status for each branch" 1>&2
 	echo "	test 		- test command" 1>&2
