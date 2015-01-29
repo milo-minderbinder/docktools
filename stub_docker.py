@@ -5,10 +5,9 @@ import sys
 
 project_dir = os.path.realpath(sys.argv[1])
 project_name = os.path.basename(project_dir)
-dockerfile_text = '''FROM mminderbinder/baseimage:0.9.15
+dockerfile_text = '''FROM mminderbinder/baseimage
 MAINTAINER Milo Minderbinder <minderbinder.enterprises@gmail.com>
 
-ENV HOME /root
 CMD ["/sbin/my_init"]
 
 

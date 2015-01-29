@@ -1,9 +1,11 @@
 #!/bin/bash
 
+projects=(baseimage python java-jdk7 tomcat7 apache2 gradle2 openam)
+
 
 usage() {
-	echo "Usage: $0 <COMMAND>" 1>&2
-	echo "	update-image - update docker images" 1>&2
+	echo "Usage: $0 [COMMAND]" 1>&2
+	echo "	update-images - update docker images" 1>&2
 	echo "	clean-images - cleanup dangling (orphaned) docker images" 1>&2
 	echo "	test - test command" 1>&2
 	exit 1
@@ -29,7 +31,7 @@ update_image() {
 
 update_images() {
 	echo "Building latest docker images from mmminderbinder's repo..."
-	for img in baseimage java-jdk7 tomcat7 apache2 gradle2 openam ; do
+	for img in ${projects[@]}; do
 		update_image "${img}"
 	done
 	echo "done!"
@@ -39,7 +41,7 @@ if [[ -z "$1" ]]; then
 	usage
 fi
 
-if [[ $1 == "update-image" ]]; then
+if [[ $1 == "update-images" ]]; then
 	if [[ -n "$2" ]]; then
 		echo "unsupported"
 	else
