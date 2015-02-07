@@ -5,7 +5,8 @@ import sys
 
 project_dir = os.path.realpath(sys.argv[1])
 project_name = os.path.basename(project_dir)
-dockerfile_text = '''FROM mminderbinder/baseimage
+dockerfile_text = '''\
+FROM mminderbinder/baseimage
 MAINTAINER Milo Minderbinder <minderbinder.enterprises@gmail.com>
 
 
@@ -14,7 +15,7 @@ MAINTAINER Milo Minderbinder <minderbinder.enterprises@gmail.com>
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 CMD ["/sbin/my_init"]
 '''
-gitignore_text = '''
+gitignore_text = '''\
 *.swp
 *.log
 '''
