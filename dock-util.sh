@@ -1,7 +1,7 @@
 #!/bin/bash
 
 image_dir=~/Docker-Projects
-images=(baseimage python java-jdk7 tomcat7 apache2 gradle2 openam)
+images=(baseimage python java-jdk7 tomcat7 apache2 gradle2 maven openam)
 
 usage() {
 	echo "Usage: $0 <COMMAND>" 1>&2
