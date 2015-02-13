@@ -33,7 +33,8 @@ with open(gitignore_file, 'w') as f:
 dockerignore_file = os.path.join(project_dir, '.dockerignore')
 with open(dockerignore_file, 'w') as f:
     f.write(gitignore_text + '\n')
-    f.write('.git')
+    f.write('.git\n')
+    f.write('README.md')
 readme_file = os.path.join(project_dir, 'README.md')
 with open(readme_file, 'w') as f:
     f.write(readme_text)
