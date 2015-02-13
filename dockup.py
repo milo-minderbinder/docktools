@@ -32,13 +32,19 @@ def git_info():
         print '\nGit info for %s' % project['name']
         project_dir = os.path.join(projects_dir, project['name'])
         os.chdir(project_dir)
+        # Fetch changes to origin
         print subprocess.check_output(['git', 'fetch', '--all'])
-        print 'Status:'
-        print subprocess.check_output(['git', 'status'])
+        # Print branch information for local and remote
         print 'Local branch info:'
         print subprocess.check_output(['git', 'branch', '-vv'])
         print 'Remote branch info:'
         print subprocess.check_output(['git', 'branch', '-vv', '-r'])
+        # Get status for each branch
+        for branch in project['branches']:
+            print '\nChecking out branch: %s' % branch
+            print subprocess.check_output(['git', 'checkout', branch])
+            print 'Status:'
+            print subprocess.check_output(['git', 'status'])
         print '-' * 80
 
 
