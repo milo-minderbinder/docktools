@@ -13,17 +13,10 @@ usage() {
 set_up() {
 	cp /etc/hosts $ORIG_HOSTS
 	cp $MOD_HOSTS /etc/hosts
-	if [[ $1 == "-P" ]]; then
-		openam_ports="-P"
-		apache_ports="-P"
-	else
-		openam_ports="-p 127.0.0.1:8080:8080"
-		apache_ports="-p 127.0.0.1:80:80"
-	fi
-	docker run -d $openam_ports --name openam -h openam.example.com mminderbinder/openam:configured
+	../openam/run-openam.sh -d configured
 	echo "Press enter when OpenAM server is up, to continue with Web Agent installation..."
 	read enter_press
-	docker run -d $apache_ports --name apache -h www.example.com --link=openam:openam.example.com mminderbinder/example-apache2
+	docker run -d -p 127.0.0.1:80:80 --name apache -h www.example.com --link=openam:openam.example.com mminderbinder/example-apache2
 	echo "done set up!"
 }
 
