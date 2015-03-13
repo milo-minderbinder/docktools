@@ -35,10 +35,8 @@ def git_info():
         # Fetch changes to origin and prune deleted branches
         print subprocess.check_output(['git', 'fetch', '--all', '-p'])
         # Print branch information for local and remote
-        print 'Local branch info:'
-        print subprocess.check_output(['git', 'branch', '-vv'])
-        print 'Remote branch info:'
-        print subprocess.check_output(['git', 'branch', '-vv', '-r'])
+        print 'Branch info:'
+        print subprocess.check_output(['git', 'branch', '-vv', '-a'])
         # Get status for each branch
         for branch in project['branches']:
             print '\nChecking out branch: %s' % branch
